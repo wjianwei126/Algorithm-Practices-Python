@@ -1,3 +1,12 @@
+# Given a sequencialized preorder traversal list of a binary tree, output its height.
+# e.g. {1, 2, *, *, 3, 4, *, *, *} stands for 
+#     1
+#    / \
+#   2   3
+#      /
+#     4
+#
+
 class TreeNode:
 	def __init__(self, x):
 		self.val = x		
