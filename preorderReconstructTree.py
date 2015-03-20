@@ -41,4 +41,4 @@ if __name__ == "__main__":
 	inputList3 = []
 	inputList4 = [1, 2, 3, "*", 4, "*", "*", "*", 5, "*", 6, 7, "*", "*", "*"]
 	
-	print solu.depth(solu.reconstruct(inputList4))
+	print solu.depth(solu.reconstruct(inputList4)) 
