@@ -13,7 +13,7 @@ class TreeNode:
 		self.left = None
 		self.right = None
 
-class Solution:
+class Solution1:
 	def reconstruct(self, lists):
 		if not lists: return None
 		root = TreeNode(lists.pop(0))
@@ -43,11 +43,24 @@ class Solution:
 		right_depth = self.depth(root.right)
 		return left_depth + 1 if left_depth >= right_depth  else right_depth + 1
 
+class Solution2:
+	index = 0
+	def findDepth(self, lists):
+		if not lists: return 0
+		return self.depth(lists)
+	def depth(self, lists):
+		if lists[self.index] == "*": return 0
+		self.index += 1
+		left_depth = self.depth(lists)
+		self.index += 1
+		right_depth = self.depth(lists)
+		return left_depth + 1 if left_depth >= right_depth else right_depth + 1
+
 if __name__ == "__main__":
-	solu = Solution()
-	inputList1 = [1, 2, "*", "*", 3, 4, "*", "*", "*"]
-	inputList2 = [1, 2, "*", 3, "*", "*", 4, "*", 5, 6, "*", "*", "*"]
-	inputList3 = []
-	inputList4 = [1, 2, 3, "*", 4, "*", "*", "*", 5, "*", 6, 7, "*", "*", "*"]
+	solu = Solution2()
+	inputList1 = [1, 2, "*", "*", 3, 4, "*", "*", "*"]    #depth 3
+	inputList2 = [1, 2, "*", 3, "*", "*", 4, "*", 5, 6, "*", "*", "*"]     #depth 4
+	inputList3 = []	  #depth 0
+	inputList4 = [1, 2, 3, "*", 4, "*", "*", "*", 5, "*", 6, 7, "*", "*", "*"]   #depth 4
 	
-	print solu.depth(solu.reconstruct(inputList4)) 
+	print solu.findDepth(inputList1) 
