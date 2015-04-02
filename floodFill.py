@@ -15,7 +15,7 @@
 #111001
 #111110
 
-class Solution:
+class Solution_dfs:
 	row = 0
 	col = 0
 
@@ -35,8 +35,42 @@ class Solution:
 		self.dfs(matrix, x, y-1)
 		self.dfs(matrix, x, y+1)
 
+	def
+
+class Solution_bfs:
+	row = 0
+	col = 0
+	def fillColor(self, matrix, x, y):
+		if not matrix or not x or not y: return 
+		row = len(matrix)
+		col = len(matrix[0])
+
+		queue = [(x,y)]
+
+		while queue:
+
+			cur = queue.pop(0)
+			if matrix[cur[0]][cur[1]] == 1:
+				continue
+			matrix[cur[0]][cur[1]] = 1
+
+			if cur[0] > 0:
+				queue.append((cur[0]-1, cur[1]))
+			if cur[0] < row - 1:
+				queue.append((cur[0]+1, cur[1]))
+			if cur[1] > 0:
+				queue.append((cur[0], cur[1]-1))
+			if cur[1] < col - 1 and matrix[cur[0]][cur[1]+1] == 0:
+				queue.append((cur[0], cur[1]+1))
+
+		return matrix
+
+
+
 if __name__ == "__main__":
-	solu = Solution()
+	solu = Solution_dfs()
 	matrix = [[1,1,1,1,1,1], [1,1,1,0,0,1], [1,0,0,1,1,0]]
-	solu.fillColor(matrix, 2, 1)
-	print matrix
+	#solu.fillColor(matrix, 2, 1)
+	#print matrix
+	solu2 = Solution_bfs()
+	print solu2.fillColor(matrix, 2, 1)
