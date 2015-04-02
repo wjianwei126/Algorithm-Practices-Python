@@ -44,23 +44,36 @@ class Solution1:
 		return left_depth + 1 if left_depth >= right_depth  else right_depth + 1
 
 class Solution2:
-	index = 0
-	def findDepth(self, lists):
-		if not lists: return 0
-		return self.depth(lists)
-	def depth(self, lists):
-		if lists[self.index] == "*": return 0
-		self.index += 1
-		left_depth = self.depth(lists)
-		self.index += 1
-		right_depth = self.depth(lists)
+	def findDepth(self, enc):
+		lists = enc.split(" ")
+		#print lists
+		index = 0
+		if not lists: 
+			return 0
+		return self.depth(lists, index)
+	def depth(self, lists, index):
+		#print self.index
+		if lists[index] == "*": return 0
+		index += 1
+		#print self.index
+		left_depth = self.depth(lists, index)
+
+		index += 1
+		#print self.index
+
+		right_depth = self.depth(lists, index)
+		#print left_depth, right_depth
 		return left_depth + 1 if left_depth >= right_depth else right_depth + 1
+
 
 if __name__ == "__main__":
 	solu = Solution2()
-	inputList1 = [1, 2, "*", "*", 3, 4, "*", "*", "*"]    #depth 3
-	inputList2 = [1, 2, "*", 3, "*", "*", 4, "*", 5, 6, "*", "*", "*"]     #depth 4
-	inputList3 = []	  #depth 0
+	inputList1 = "1 * *"   #depth 3
+	inputList2 = "1 2 * * *"    #depth 4
+	inputList3 = "ab * *"	  #depth 0
 	inputList4 = [1, 2, 3, "*", 4, "*", "*", "*", 5, "*", 6, 7, "*", "*", "*"]   #depth 4
 	
 	print solu.findDepth(inputList1) 
+	print solu.findDepth(inputList2) 
+	print solu.findDepth(inputList3) 
+
