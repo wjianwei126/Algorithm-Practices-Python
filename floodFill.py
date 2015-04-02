@@ -35,7 +35,25 @@ class Solution_dfs:
 		self.dfs(matrix, x, y-1)
 		self.dfs(matrix, x, y+1)
 
-	def
+	def fillColorInterative(self, matrix, x, y):
+		if not matrix or not x or not y: return 
+		self.row = len(matrix)
+		self.col = len(matrix[0])
+		stack = [(x,y)]
+		while stack:
+			cur = stack.pop()
+			if matrix[cur[0]][cur[1]] == 1:
+				continue
+			matrix[cur[0]][cur[1]] = 1
+			if cur[0] > 0:
+				stack.append((cur[0]-1, cur[1]))
+			if cur[0] < self.row - 1:
+				stack.append((cur[0]+1, cur[1]))
+			if cur[1] > 0:
+				stack.append((cur[0], cur[1]-1))
+			if cur[1] < self.col - 1:
+				stack.append((cur[0], cur[1]+1))
+		return matrix
 
 class Solution_bfs:
 	row = 0
@@ -60,7 +78,7 @@ class Solution_bfs:
 				queue.append((cur[0]+1, cur[1]))
 			if cur[1] > 0:
 				queue.append((cur[0], cur[1]-1))
-			if cur[1] < col - 1 and matrix[cur[0]][cur[1]+1] == 0:
+			if cur[1] < col - 1:
 				queue.append((cur[0], cur[1]+1))
 
 		return matrix
@@ -70,7 +88,8 @@ class Solution_bfs:
 if __name__ == "__main__":
 	solu = Solution_dfs()
 	matrix = [[1,1,1,1,1,1], [1,1,1,0,0,1], [1,0,0,1,1,0]]
+	print solu.fillColorInterative(matrix, 2, 1)
 	#solu.fillColor(matrix, 2, 1)
 	#print matrix
-	solu2 = Solution_bfs()
-	print solu2.fillColor(matrix, 2, 1)
+	#solu2 = Solution_bfs()
+	#print solu2.fillColor(matrix, 2, 1)
