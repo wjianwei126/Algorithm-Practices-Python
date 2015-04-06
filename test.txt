@@ -1,0 +1,7 @@
+abc/* hah aha*/def
+abc/* zzzzzzz
+zzz*/def
+abc/*/zzzzzzz*/def
+abc/* zzzz/* sss */def
+abc/* zzzz/*/def
+abc*/def
