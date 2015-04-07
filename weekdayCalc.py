@@ -1,5 +1,3 @@
-
-
 class Solution:
 	def weekdayCalc(self, date, weekday):
 		# first decide weekday(Mon, Tue, etc.) of the date
