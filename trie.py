@@ -49,16 +49,41 @@ class Trie:
 				del cur_dict[key]
 				break
 
+	def serialization(self):
+		if self.root == {}: return []
+		re = []
+		cur_row = []
+		for key in self.root.keys():
+			cur_row.append((key, self.root))
+		#cur_row = [(self.root.keys(), self.root)]
+		#cur_dict = self.root
+		next_row = []
+		temp = []
+		while cur_row:
+			key, _dict = cur_row.pop(0)
+			if key != "_end_":
+				temp.append(key)
+				for k in _dict[key].keys():
+					next_row.append((k, _dict[key]))
+			if len(cur_row) == 0:
+				if len(temp) != 0:
+					re.append(temp)
+				cur_row = next_row
+				next_row = []
+				temp = []
+		return re
+
 
 
 
 if __name__ == "__main__":
 	trie = Trie(["foo", "bar", "barz", "baz"])
 	print trie.root
-	trie.add("fok")
-	print trie.root
-	trie.remove("bar")
-	print trie.root
-	trie.remove("baz")
-	print trie.root
+	#trie.add("fok")
+	#print trie.root
+	#trie.remove("bar")
+	#print trie.root
+	#trie.remove("baz")
+	#print trie.root
+	print trie.serialization()
 	#print trie.inTrie("bar")
