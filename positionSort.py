@@ -10,12 +10,12 @@ class Solution:
         i = 0
         while i < len(l1):
             if l2[i] != i:
-                tmp = l2[i]
-                tmp2 = l1[i]
-                l2[i] = l2[tmp]
-                l1[i] = l1[tmp]
-                l2[tmp] = tmp
-                l1[tmp] = tmp2
+                tmp1 = l1[i]
+                tmp2 = l2[i]
+                l1[i] = l1[tmp2]
+                l2[i] = l2[tmp2]
+                l1[tmp2] = tmp1
+                l2[tmp2] = tmp2
 
                 continue
             else:

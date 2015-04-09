@@ -21,6 +21,7 @@ class Solution:
 		return re
 
 	def dupRecurSolu(self, A):
+		A.sort()
 		subsets = self.dupRecursive(A)
 		re = []
 		for sets in subsets:
@@ -43,7 +44,7 @@ class Solution:
 
 if __name__ == "__main__":
 	solu = Solution()
-	A = [2,2,2]
+	A = [2,3,2]
 	print solu.allProducts(A)
 	print solu.recursive(A)
 	print solu.dupRecurSolu(A)
