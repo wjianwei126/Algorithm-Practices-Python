@@ -1,4 +1,6 @@
-# a matrix，0 represents empty，1 represents obstacle，find whether there's a path between 2 nodes.
+# a matrix, 0 represents empty, 1 represents obstacl. 
+# find whether there's a path between 2 nodes.
+class Solution:
 	row = 0
 	col = 0
 	tar_x = 0

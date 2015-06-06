@@ -19,7 +19,7 @@ class Solution():
 
 		text = open("test.txt")
 		output = ""
-		flag = False
+		flag = False     # comment flag, true stands for comments, false for not comments
 		while True:
 			line = text.readline()
 			if not line:

@@ -17,54 +17,6 @@ class IntFileIterator:
 
 
 class FileCompare:
-	'''
-	def isDistanceZeroOrOne(self, fileIterator1, fileIterator2):
-		if not fileIterator1 and fileIterator2: return False
-		if not fileIterator2 and fileIterator1: return False
-		if not fileIterator1 and not fileIterator2: return True
-		return self.distanceHelper(fileIterator1, fileIterator2, 0)
-
-	def distanceHelper(self, iterator1, iterator2, count):
-		if count > 1: 
-			return False
-		if (not iterator1.hasNext() and not iterator2.hasNext()):
-			return True
-
-		if iterator1.hasNext() and not iterator2.hasNext():
-			iterator1.next()
-			return self.distanceHelper(iterator1, iterator2, count+1)
-		elif not iterator1.hasNext() and iterator2.hasNext():
-			iterator2.next()
-			return self.distanceHelper(iterator1, iterator2, count+1)
-		else:
-			if iterator1.next() == iterator2.next():
-				return self.distanceHelper(iterator1, iterator2, count)
-			else:
-				return self.distanceHelper(iterator1, iterator2, count+1)
-
-	def nonrecursive(self, fileIterator1, fileIterator2):
-		if not fileIterator1 and fileIterator2: return False
-		if not fileIterator2 and fileIterator1: return False
-		if not fileIterator1 and not fileIterator2: return True
-		totalModi = 0
-		while fileIterator1.hasNext() or fileIterator2.hasNext():
-
-			if fileIterator1.hasNext() and  not fileIterator2.hasNext():
-				iterator1.next()
-				totalModi += 1
-
-			elif not fileIterator1.hasNext() and fileIterator2.hasNext():
-				iterator2.next()
-				totalModi += 1
-
-			else:
-				if fileIterator1.next() != fileIterator2.next():
-					totalModi += 1
-
-			if totalModi > 1:
-				return False
-		return True
-	'''
 	def rightmethod(self, fileIterator1, fileIterator2):
 		if not fileIterator1 and fileIterator2: return False
 		if not fileIterator2 and fileIterator1: return False
