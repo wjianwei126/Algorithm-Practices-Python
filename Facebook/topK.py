@@ -47,7 +47,7 @@ class Solution:
 		"O(n)"
 		if not S or len(S) == 0 or k <= 0: return []
 		if k >= len(S): return S
-		
+
 		def findK(input, k):
 			if k <= 0:
 				return []
@@ -77,6 +77,35 @@ class Solution:
 
 		return findK(S,k)
 
+	def findKth(self, s, k):
+		if not s or k <= 0: return None
+		if k > len(s): return None
+
+		def helper(input, k):
+			if k <= 0 or k > len(input): return
+			(left, pivot, right) = partition(input)
+			if len(left) == k - 1:
+				return pivot
+			elif len(left) < k - 1:
+				return helper(right, k - 1 - len(left))
+			else:
+				return helper(left, k)
+
+		def partition(input):
+			left = []
+			right = []
+			index = random.randrange(len(input))
+			input[0], input[index] = input[index], input[0]
+			pivot = input[0]
+			for i in range(1, len(input)):
+				if input[i] > pivot:
+					left.append(input[i])
+				else:
+					right.append(input[i])
+			return (left, pivot, right)
+
+		return helper(s, k)
+
 
 
 
@@ -88,3 +117,4 @@ if __name__ == "__main__":
 	print solu.topK2(S, 5)
 	print solu.topK3(S, 5)
 	print solu.topK4(S, 5)
+	print solu.findKth(S, 5)
