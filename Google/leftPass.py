@@ -3,13 +3,15 @@ class Solution:
     def bruteForce(self, nums):
         # O(n^2)
         if not nums or len(nums) == 1: return 0
-        res = 0
+        # res = 0
+        res = [0]
         for i in range(1, len(nums)):
             count = 0
             for j in range(i):
                 if nums[j] > nums[i]:
                     count += 1
-            res = max(count, res)
+            # res = max(count, res)
+            res.append(count)
         return res
 
     def mergeSortMethod(self, nums):
@@ -57,6 +59,6 @@ class Solution:
                 right += 1
 
 solu = Solution()
-nums = [3, 0, 6, 1, 5, 1, 0, 1, 7]
+nums = [5,3,4,2,7,1,6]
 print solu.bruteForce(nums)
 print solu.mergeSortMethod(nums)
