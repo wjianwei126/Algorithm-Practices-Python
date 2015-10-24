@@ -1,10 +1,7 @@
 class Solution:
     def friendCircles(self, friends):
         if not friends or not friends[0]: return 0
-        people = set()
-        for i in xrange(len(friends)):
-            people.add(i)
-        print people
+        people = set(range(len(friends)))
 
         friendDic = {}
         for i in xrange(len(friends)):
