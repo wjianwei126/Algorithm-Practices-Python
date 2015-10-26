@@ -6,45 +6,49 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def serialize(self, node):
-        # use pre-order tranversal
-        res = []
-        stack = [node]
-        while stack :
-            cur = stack.pop()
-            res.append(cur.val)
-            if cur.val == '#':
-                continue
-            if cur.right:
-                stack.append(cur.right)
-            else:
-                stack.append(TreeNode('#'))
-            if cur.left:
-                stack.append(cur.left)
-            else:
-                stack.append(TreeNode('#'))
-        return res
+    def serialize(self, root):
+        """Encodes a tree to a single string.
 
-    def deserialize(self, serial):
-        root = TreeNode(serial.pop(0))
-        stack = [root]
-        while serial:
-            node = TreeNode(serial.pop(0))
-            leftFlag = True
-            if node.val == '#' and leftFlag:
-                stack[-1].left = node
-                stack.append(node)
-            elif node.val == '#' and not leftFlag:
-                stack[-1].right = node
-                stack.append(node)
-                leftFlag = True
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root: return ''
+        queue = [root]
+        res = []
+        while queue:
+            node = queue.pop(0)
+            if not node:
+                res.append('#')
+                continue
+            res.append(str(node.val))
+            nextLeft = node.left if node.left else None
+            nextRight = node.right if node.right else None
+            queue += [nextLeft, nextRight]
+        return ','.join(res)
+
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """
+        if not data: return None
+        data = data.split(',')
+        root = TreeNode(data.pop(0))
+        queue = [root]
+        left = True
+        while data:
+            nxt = data.pop(0)
+            node = TreeNode(nxt) if nxt != '#' else None
+            if node:
+                queue.append(node)
+            if left:
+                queue[0].left = node
             else:
-                if leftFlag:
-                    leftFlag = False
-                else:
-                    stack.pop()
-                    while stack and stack[-1].right:
-                        stack.pop()
+                queue[0].right = node
+                queue.pop(0)
+            left = not left
         return root
 
 solu = Solution()
@@ -62,4 +66,4 @@ D.left = E
 D.right = F
 F.left = G
 print solu.serialize(A)
-print solu.deserialize(solu.serialize(A)).val
+print solu.deserialize(solu.serialize(A)).left.val
