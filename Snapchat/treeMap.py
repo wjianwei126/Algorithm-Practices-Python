@@ -1,0 +1,57 @@
+class TreeNode:
+    def __init__(self, key, value):
+        self.key = key
+        self.val = value
+        self.left = None
+        self.right = None
+
+class TreeMap:
+    def __init__(self):
+        self.root = None
+
+    def put(self, key, value):
+        if not self.root:
+            self.root = TreeNode(key, value)
+            return
+        node = self.root
+        while node:
+            if key > node.key:
+                if node.right:
+                    node = node.right
+                else:
+                    node.right = TreeNode(key, value)
+                    break
+            elif key < node.key:
+                if node.left:
+                    node = node.left
+                else:
+                    node.left = TreeNode(key, value)
+                    break
+            else:
+                node.val = value
+                break
+
+    def get(self, key):
+        if not self.root: return -1
+        node = self.root
+        while node:
+            if key > node.key:
+                node = node.right
+            elif key < node.key:
+                node = node.left
+            else:
+                return node.val
+        if not node: return -1
+
+treeMap = TreeMap()
+print treeMap.get(4)
+treeMap.put(5, 'a')
+treeMap.put(6, 'c')
+treeMap.put(4, 'b')
+treeMap.put(5.5, 'd')
+print treeMap.get(6)
+print treeMap.get(4)
+print treeMap.get(5.5)
+print treeMap.get(5.7)
+treeMap.put('a', 'dd')
+print treeMap.get('a')

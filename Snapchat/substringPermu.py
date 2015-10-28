@@ -1,3 +1,4 @@
+# 给两个string s跟p，问如何判断p是不是s的某个substring的permutation，例如s = "dlwercxhhcd", p = "hdch"，返回true
 class Solution:
     def substringPermu(self, s, p):
         if not s or len(s) < len(p): return False
@@ -30,6 +31,7 @@ class Solution:
                     return True
                 right += 1
         return False
+
 
 solution = Solution()
 s = 'abcdefe'
