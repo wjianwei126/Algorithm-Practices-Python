@@ -33,42 +33,42 @@ class Solution:
 
         return self.dp[i][j]
 
-    def skiIterative(self, mountain):
-        if not mountain or not mountain[0]: return 0
-        m = len(mountain)
-        n = len(mountain[0])
-        dp = [[0] * n for x in range(m)]
-        direction = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-
-        res = 0
-        for i in range(m):
-            for j in range(n):
-                stack = [(i, j, 0)]
-                length = 1
-                while stack:
-                    x, y, path = stack.pop()
-                    if dp[x][y] != 0:
-                        length = max(length, path + dp[x][y])
-                        continue
-
-                    end = True
-                    for k in range(4):
-                        _x = x + direction[k][0]
-                        _y = y + direction[k][1]
-
-                        if _x < 0 or _x >= m or _y < 0 or _y >= n:
-                            continue
-
-                        if mountain[x][y] > mountain[_x][_y]:
-                            end = False
-                            stack.append((_x, _y, path+1))
-                    if end:
-                        dp[x][y] = 1
-                        length = max(length, path + 1)
-                dp[i][j] = length
-                res = max(res, dp[i][j])
-        print dp
-        return res
+    # def skiIterative(self, mountain):
+    #     if not mountain or not mountain[0]: return 0
+    #     m = len(mountain)
+    #     n = len(mountain[0])
+    #     dp = [[0] * n for x in range(m)]
+    #     direction = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+    #
+    #     res = 0
+    #     for i in range(m):
+    #         for j in range(n):
+    #             stack = [(i, j, 0)]
+    #             length = 1
+    #             while stack:
+    #                 x, y, path = stack.pop()
+    #                 if dp[x][y] != 0:
+    #                     length = max(length, path + dp[x][y])
+    #                     continue
+    #
+    #                 end = True
+    #                 for k in range(4):
+    #                     _x = x + direction[k][0]
+    #                     _y = y + direction[k][1]
+    #
+    #                     if _x < 0 or _x >= m or _y < 0 or _y >= n:
+    #                         continue
+    #
+    #                     if mountain[x][y] > mountain[_x][_y]:
+    #                         end = False
+    #                         stack.append((_x, _y, path+1))
+    #                 if end:
+    #                     dp[x][y] = 1
+    #                     length = max(length, path + 1)
+    #             dp[i][j] = length
+    #             res = max(res, dp[i][j])
+    #     print dp
+    #     return res
 
 
 solu = Solution()
