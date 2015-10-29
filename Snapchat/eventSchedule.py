@@ -1,3 +1,6 @@
+# 先是建一个event, 里面有start time和end time, 然后check这两个event有没有conflict,
+# 各种if else, 然后升级, 给一个list of events, 直接sort他们。再升级, 建一个schedule,
+# 给几个office, 问怎么样的solution才是optimal的
 import heapq
 class Event:
     def __init__(self, start, end):
