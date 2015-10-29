@@ -15,7 +15,6 @@ class Solution:
             if j == len(nums):
                 begin += 1
                 i, j = 0, begin
-        print dp
         return dp[0][len(nums)-1]
 
     def maxExpressionWithNegative(self, nums):
@@ -37,8 +36,6 @@ class Solution:
             if j == len(nums):
                 begin += 1
                 i, j = 0, begin
-        print maxDP
-        print minDP
         return maxDP[0][len(nums)-1]
 solution = Solution()
 nums = [1,0,-2,-1]

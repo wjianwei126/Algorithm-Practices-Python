@@ -1,4 +1,5 @@
 # leftpass of an element x is defined as the number of elements on left side of x which is larger than element x. find the maximum leftpass of an array
+import heapq
 class Solution:
     def bruteForce(self, nums):
         # O(n^2)
@@ -58,7 +59,30 @@ class Solution:
                 pointer += 1
                 right += 1
 
+    def heapMethod(self, nums):
+        # O(nlogn) time
+        if not nums or len(nums) == 1: return []
+        heap = []
+        res = [0]
+        heapq.heappush(heap, nums[0])
+        for i in range(1, len(nums)):
+            if nums[i] < heap[0]:
+                print nums[i]
+                res.append(len(heap))
+                heapq.heappush(heap, nums[i])
+            else:
+                temp = []
+                while heap and heap[0] <= nums[i]:
+                    temp.append(heapq.heappop(heap))
+                res.append(len(heap))
+                for num in temp:
+                    heapq.heappush(heap, num)
+                heapq.heappush(heap, nums[i])
+        return res
+
 solu = Solution()
-nums = [5,3,4,2,7,1,6]
-print solu.bruteForce(nums)
-print solu.mergeSortMethod(nums)
+# nums = [5,3,4,2,7,1,6]
+# print solu.bruteForce(nums)
+# print solu.mergeSortMethod(nums)
+nums = [3,1,2,9,5,4,3]
+print solu.heapMethod(nums)
