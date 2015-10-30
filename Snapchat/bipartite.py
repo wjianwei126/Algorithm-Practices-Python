@@ -24,7 +24,7 @@ class Graph:
                     cur.color = color
                     for neighbor in cur.neighbors:
                         if not neighbor.color:
-                            queue.append((neighbor, 0 - color))
+                            queue.append((neighbor, 1 - color))
                         elif neighbor.color == color:
                             return False
         return True
