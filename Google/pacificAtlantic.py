@@ -48,5 +48,5 @@ class Solution:
         return self.dp[x][y]
 
 solution = Solution()
-matrix = [[1,1,1,1,6],[1,1,6,5,7], [1,1,8,1,1], [10,9,1,1,1]]
+matrix = [[1,2,3,4,6],[1,2,6,5,7], [6,8,8,5,3], [10,9,8,7,1]]
 print solution.pacificAtlantic(matrix)

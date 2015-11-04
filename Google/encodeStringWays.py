@@ -1,3 +1,5 @@
+# 给一个字符串，连续的字符可以用数字替代，比如 "school"
+# 可以缩写成 “sch3” "s4l" "s5" "s1h2l", 求所有可能的缩写
 class Solution:
     def encodeStringWays(self, s):
         if not s: return []
