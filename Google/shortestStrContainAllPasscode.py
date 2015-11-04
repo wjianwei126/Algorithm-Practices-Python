@@ -1,8 +1,8 @@
 class Solution:
     def shortestStrContainAllPasscode(self):
         visited = set()
-        num = 9999
-        res = '999'
+        num = 0
+        res = '000'
         while len(visited) < 10000:
             res += str(num % 10)
             visited.add(num)
