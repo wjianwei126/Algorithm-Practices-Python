@@ -26,6 +26,26 @@ class Solution:
         root.right = self.deserialize(data)
         return root
 
+    def checkValid(self, nodes):
+        if not nodes: return True
+        stack = []
+        i = 0
+        while i < len(nodes):
+            print stack
+            while len(stack) > 2 and stack[-1] == '#' and stack[-2] == '#':
+                stack.pop()
+                stack.pop()
+                stack.pop()
+                stack.append('#')
+            stack.append(nodes[i])
+            i += 1
+        while len(stack) > 2 and stack[-1] == '#' and stack[-2] == '#':
+            stack.pop()
+            stack.pop()
+            stack.pop()
+            stack.append('#')
+        return stack == ['#']
+
 solu = Solution()
 A = TreeNode('A')
 B = TreeNode('B')
@@ -41,18 +61,20 @@ D.left = E
 D.right = F
 F.left = G
 solu.serialize(A)
-print solu.res
-root = solu.deserialize(solu.res)
-stack = []
-node = root
-while stack or node:
-    if node:
-        print node.val
-        if node.right:
-            stack.append(node.right)
-        node = node.left
-    else:
-        node = stack.pop()
+# print solu.res
+# root = solu.deserialize(solu.res)
+# stack = []
+# node = root
+# while stack or node:
+#     if node:
+#         print node.val
+#         if node.right:
+#             stack.append(node.right)
+#         node = node.left
+#     else:
+#         node = stack.pop()
+
+print solu.checkValid([9, 3, 4, '#', '#', 1, 2, '#', '#', '#'])
 
 class NAryTree:
     def __init__(self, x):
@@ -104,6 +126,6 @@ F.children = [K]
 D.children = [G,H,I,J]
 solu = Solution2()
 solu.serialize(A)
-print solu.res
-end, root = solu.deserialize(solu.res)
-solu.traverse(root)
+# print solu.res
+# end, root = solu.deserialize(solu.res)
+# solu.traverse(root)
