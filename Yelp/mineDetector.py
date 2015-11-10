@@ -8,20 +8,26 @@ class MineDetector:
 
     def genBoard(self):
         mines = random.sample(range(self.m*self.n), self.k)
+        surrounding = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
         for index in mines:
             x = index / self.n
             y = index % self.n
             self.board[x][y] = '*'
-        surrounding = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
-        for i in range(self.m):
-            for j in range(self.n):
-                if self.board[i][j] == '*':
-                    continue
-                for k in surrounding:
-                    newX = i + k[0]
-                    newY = j + k[1]
-                    if newX >= 0 and newX < self.m and newY >= 0 and newY < self.n and self.board[newX][newY] == '*':
-                        self.board[i][j] += 1
+            for k in surrounding:
+                newX = x + k[0]
+                newY = y + k[1]
+                if newX >= 0 and newX < self.m and newY >= 0 and newY < self.n and self.board[newX][newY] != '*':
+                    self.board[newX][newY] += 1
+
+        # for i in range(self.m):
+        #     for j in range(self.n):
+        #         if self.board[i][j] == '*':
+        #             continue
+        #         for k in surrounding:
+        #             newX = i + k[0]
+        #             newY = j + k[1]
+        #             if newX >= 0 and newX < self.m and newY >= 0 and newY < self.n and self.board[newX][newY] == '*':
+        #                 self.board[i][j] += 1
         return self.board
 
 md = MineDetector(5, 5, 20)
