@@ -26,7 +26,35 @@ def reverseHTMLString(s):
         res.append(reverseString(temp))
     return ''.join(res[::-1])
 
+def reverseHTMLStringBetter(s):
+    if not s: return ''
+    arr = list(s)
+    res = []
+    dic = {}
+    swap(arr, 0, len(arr) - 1)
+
+    start = -1
+    for i in range(len(arr)):
+        if arr[i] == ';':
+            start = i
+        if arr[i] == '&' and start != -1:
+            dic[start] = i
+            start = -1
+
+    for key in dic.keys():
+        swap(arr, key, dic[key])
+
+    return ''.join(arr)
+
+def swap(nums, beg, end):
+    while beg < end:
+        nums[beg], nums[end] = nums[end], nums[beg]
+        beg += 1
+        end -= 1
+
 s = '1234&euro;'
 s = '1234&euro'
 s = '1234&euro;567'
-print reverseHTMLString(s)
+s = '12345&78&amp;888'
+s = '&&&&&'
+print reverseHTMLStringBetter(s)
