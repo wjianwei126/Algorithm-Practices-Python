@@ -21,7 +21,7 @@ threadLock = threading.Lock()
 def calculatePairs(q1, q2, value):
     q1.append(value)
     # print q1, q2
-    while q2 and abs(value - q2[0]) >= 1:
+    while q2 and value - q2[0] >= 1:
         q2.pop(0)
     for num in q2:
         if abs(num - value) < 1:
