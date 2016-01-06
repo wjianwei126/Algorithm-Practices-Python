@@ -2,6 +2,7 @@ class TrieNode:
     def __init__(self):
         self.children = {}
         self.end = False
+        self.count = 0
 
 class Trie:
     def __init__(self):
@@ -13,23 +14,15 @@ class Trie:
             if ch not in node.children:
                 node.children[ch] = TrieNode()
             node = node.children[ch]
+            node.count += 1
         node.end = True
-
-    def search(self, word):
-        node = self.root
-        for ch in word:
-            if ch not in node.children:
-                return False
-            node = node.children
-        return node.end
 
     def searchIdentify(self, word):
         node = self.root
         res = ''
         for ch in word:
             res += ch
-            # print res, node.children[ch].end
-            if len(node.children[ch].children.keys()) > 1 or node.children[ch].end:
+            if node.children[ch].count > 1:
                 node = node.children[ch]
             else:
                 break
