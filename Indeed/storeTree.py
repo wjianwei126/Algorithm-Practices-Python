@@ -65,6 +65,8 @@ def recoverFromTwoArrays(valueList, indexList):
             dic[parentIndex].right = TreeNode(valueList[i])
     return dic[1]
 
+# If the tree is really sparse, just leave it as the tree node structure
+
 A = TreeNode('A')
 B = TreeNode('B')
 C = TreeNode('C')
