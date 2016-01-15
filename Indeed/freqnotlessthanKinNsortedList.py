@@ -27,10 +27,11 @@ def findFreqGreaterThanK(streams, k):
         count = 0
         curLen = len(heap)
         for i in range(curLen):
-            val, index = heapq.heappop(heap)
+            val, index = heap[-1]
             if not curVal:
                 curVal = val
             if curVal == val:
+                heapq.heappop(heap)
                 count += 1
                 if streams[index].hasNext():
                     nextValue = streams[index].next()
@@ -39,7 +40,6 @@ def findFreqGreaterThanK(streams, k):
                     if nextValue != curVal:
                         heapq.heappush(heap, (nextValue, index))
             else:
-                heapq.heappush(heap, (val, index))
                 break
 
         if count >= k:
